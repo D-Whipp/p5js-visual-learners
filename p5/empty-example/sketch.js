@@ -4,11 +4,22 @@ function setup() {
 }
 
 function draw() {
-  background(155, 200, 200);
-  rect(50, 100, 100, 100);
-  rect(200, 100, 100, 100);
-  ellipse(175, 300, 150, 75);
-  line(50, 100, 150, 200);
-  line(200, 200, 300, 100);
-  line(250, 300, 100, 300)
+  background(220);
+  // circle one
+  fill(255, 0, 0);
+  ellipse(200, 200, 100, 100);
+  fill(111, 211, 1);
+  ellipse(200, 200, 90, 90);
+  // circle two
+  fill(0, 244, 0);
+  ellipse(100, 100, 100, 100);
+  fill(111, 1, 211);
+  ellipse(100, 100, 90, 90);
+  // circle three
+  fill(0, 0, 255);
+  ellipse(300, 300, 100, 100);
+  fill(1, 211, 111);
+  // noFill();
+  stroke(0);
+  ellipse(300, 300, 90, 90);
 }
