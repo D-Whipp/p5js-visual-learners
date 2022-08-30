@@ -1,30 +1,26 @@
 let count = 0;
 
-function setup() {
-  let canvasWidth = 800;
-  let canvasHeight = 400;
+// let toggle = true;
 
-  createCanvas(canvasWidth, canvasHeight);
-  rectMode(CENTER);
+function setup() {
+  createCanvas(800, 400);
 }
 
 function draw() {
-  let canvasWidth = 800;
-  let canvasHeight = 400;
+  background(1, 234, 34);
 
-  background(1, 185, 244);
-  let x = count / 2;
-  let y = canvasHeight / 2;
-  let size = 200 + count;
-
-  // circle
-  fill(237, 34, 93);
+  fill(222, 33, 2);
   noStroke();
-  ellipse(x, y, size, size);
+  let diameter = 25;
 
-  // rectangle
-  fill(225);
-  rect(x, y, 150, 30);
-
-  count = count + 1;
+  for (let i = 0; i < width / diameter; i = i + 1) {
+    for (let j = 0; j < height / diameter; j = j + 1) {
+      ellipse(
+        i * diameter + diameter / 2,
+        j * diameter + diameter / 2,
+        diameter,
+        diameter
+      );
+    }
+  }
 }
