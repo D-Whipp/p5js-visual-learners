@@ -4,23 +4,25 @@ let count = 0;
 
 function setup() {
   createCanvas(800, 400);
+  textAlign(CENTER, CENTER);
+  // frameRate(1);
 }
 
 function draw() {
-  background(1, 234, 34);
+  background(0, 0, 0);
 
-  fill(222, 33, 2);
+  fill(237, 34, 93);
   noStroke();
-  let diameter = 25;
+  let diameter = 50;
 
   for (let i = 0; i < width / diameter; i = i + 1) {
     for (let j = 0; j < height / diameter; j = j + 1) {
       ellipse(
-        i * diameter + diameter / 2,
-        j * diameter + diameter / 2,
-        diameter,
-        diameter
-      );
+        diameter / 2 + i * diameter,
+        diameter /2 + j * diameter,
+        diameter * noise(frameCount / 100 + i + j),
+        diameter * noise(frameCount / 50 + i + j)
+      )
     }
   }
 }
