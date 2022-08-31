@@ -3,26 +3,21 @@ let count = 0;
 // let toggle = true;
 
 function setup() {
-  createCanvas(800, 400);
-  textAlign(CENTER, CENTER);
-  // frameRate(1);
+  createCanvas(800, 300);
 }
 
 function draw() {
   background(0, 0, 0);
+  let x = squared(64);
+  console.log(x);
+}
 
-  fill(237, 34, 93);
-  noStroke();
-  let diameter = 50;
+function squared(num) {
+  let result = num * num;
+  fill(234, 200, 23);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(result, width / 2, height / 2);
 
-  for (let i = 0; i < width / diameter; i = i + 1) {
-    for (let j = 0; j < height / diameter; j = j + 1) {
-      ellipse(
-        diameter / 2 + i * diameter,
-        diameter /2 + j * diameter,
-        diameter * noise(frameCount / 100 + i + j),
-        diameter * noise(frameCount / 50 + i + j)
-      )
-    }
-  }
+  return result;
 }
