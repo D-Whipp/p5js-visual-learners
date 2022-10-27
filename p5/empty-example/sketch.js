@@ -1,26 +1,25 @@
 let words = ['I', 'love', 'programming', 'with', 'JavaScript'];
-
-let sizes = [];
+let colors = [
+  [240, 255, 66],
+  [130, 205, 71],
+  [84, 180, 53],
+  [55, 146, 55],
+  [155, 56, 155],
+];
 
 function setup() {
   createCanvas(800, 300);
-  for (let i = 0; i < 100; i++) {
-    let randomValue = random(5, 500);
-    sizes.push(randomValue);
-  }
-  textAlign(CENTER, CENTER)
+  textAlign(CENTER, CENTER);
+  frameRate(1);
 }
 
 function draw() {
-  background(200);
+  let currentIndex = frameCount % words.length;
+  let currentColor = colors[currentIndex];
+  let currentWord = words[currentIndex];
+  background(currentColor);
 
-  
-  // noFill();
-  // strokeWeight(2);
-  // for (let i = 0; i < sizes.length; i++) {
-  //   ellipse(width / 2, height / 2, sizes[i], sizes[i]);
-  // }
-  textSize(45)
+  textSize(45);
   fill(255);
-  text('JavaScript', width / 2, height / 2)
+  text(currentWord, width / 2, height / 2);
 }
