@@ -1,25 +1,32 @@
-let words = ['I', 'love', 'programming', 'with', 'JavaScript'];
-let colors = [
-  [240, 255, 66],
-  [130, 205, 71],
-  [84, 180, 53],
-  [55, 146, 55],
-  [155, 56, 155],
-];
+let toggle = true;
 
 function setup() {
   createCanvas(800, 300);
-  textAlign(CENTER, CENTER);
-  frameRate(1);
+  rectMode(CENTER);
 }
 
 function draw() {
-  let currentIndex = frameCount % words.length;
-  let currentColor = colors[currentIndex];
-  let currentWord = words[currentIndex];
-  background(currentColor);
+  // if (mouseIsPressed === true) {
+  //   toggle = !toggle;
+  // }
 
-  textSize(45);
+  if (toggle === true) {
+    background(1, 186, 240);
+  } else {
+    background(250, 150, 50);
+  }
+
+  let x = width / 2;
+  let y = height / 2;
+  let size = 200;
+
+  fill(237, 34, 93);
+  noStroke();
+  ellipse(x, y, size, size);
   fill(255);
-  text(currentWord, width / 2, height / 2);
+  rect(x, y, size * 0.75, size * 0.15);
+}
+
+function mousePressed() {
+  toggle = !toggle;
 }
