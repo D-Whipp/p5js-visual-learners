@@ -1,32 +1,30 @@
-let toggle = true;
+let pressed = false;
+let colors = [];
 
 function setup() {
-  createCanvas(800, 300);
-  rectMode(CENTER);
+  createCanvas(800, 500);
+  background(0);
+  colors = [
+    [0, 46, 148],
+    [8, 58, 169],
+    [255, 231, 204],
+    [49, 32, 224],
+    [59, 154, 225],
+    [33, 225, 225],
+  ];
+  noStroke();
 }
 
 function draw() {
-  // if (mouseIsPressed === true) {
-  //   toggle = !toggle;
-  // }
-
-  if (toggle === true) {
-    background(1, 186, 240);
-  } else {
-    background(250, 150, 50);
+  if (pressed === true) {
+    let randomIndex = parseInt(random(colors.length), 10);
+    let randomSize = random(200);
+    fill(colors[randomIndex]);
+    ellipse(random(width), random(height), randomSize, randomSize);
   }
-
-  let x = width / 2;
-  let y = height / 2;
-  let size = 200;
-
-  fill(237, 34, 93);
-  noStroke();
-  ellipse(x, y, size, size);
-  fill(255);
-  rect(x, y, size * 0.75, size * 0.15);
+  pressed = false;
 }
 
-function mousePressed() {
-  toggle = !toggle;
+function keyPressed() {
+  pressed = true;
 }
