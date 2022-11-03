@@ -1,7 +1,8 @@
 let guessItem = null;
-let interval = 150;
+let interval = 100;
 let results = [];
 let solution = null;
+let gameOver = false;
 
 function setup() {
   createCanvas(800, 300);
@@ -9,11 +10,10 @@ function setup() {
 
 function draw() {
   let gameScore = getGameScore(results);
-  // console.log(gameScore);
-  displayGameOver(gameScore);
-  return;
 
   if (gameScore.loss === 3 || gameScore.total === 10) {
+    gameOver = true;
+    displayGameOver(gameScore);
     return;
   }
 
@@ -36,6 +36,7 @@ function draw() {
 
 function displayGameOver(score) {
   push();
+  background(255);
   textAlign(CENTER, CENTER);
   translate(width / 2, height / 2);
 
@@ -45,11 +46,11 @@ function displayGameOver(score) {
   translate(0, 40);
 
   fill(0);
-  // console.log(score.wins)
   text('You scored: ' + score.wins, 0, 0);
   translate(0, 90);
 
-  fill(37, 34, 133);
+  let alternateVal = map(sin(frameCount / 10), -1, 1, 0, 255);
+  fill(37, 34, 133, alternateVal);
   textSize(24);
   text('Press ENTER to play again.', 0, 0);
   pop();
@@ -71,7 +72,20 @@ function getGameScore(score) {
   return { wins: wins, loss: losses, total: total };
 }
 
+function restartGame() {
+  results = [];
+  solution = null;
+  gameOver = false;
+}
+
 function keyPressed() {
+  if (gameOver === true) {
+    if (keyCode === ENTER) {
+      console.log('restart game');
+      restartGame();
+      return;
+    }
+  }
   if (guessItem !== null) {
     console.log("I'm listening", key);
     solution = guessItem.solve(key);
