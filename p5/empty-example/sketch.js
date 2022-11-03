@@ -1,4 +1,5 @@
 let guessItem;
+let interval = 100;
 
 function setup() {
   createCanvas(800, 300);
@@ -6,7 +7,7 @@ function setup() {
 
 function draw() {
   background(220);
-  if (frameCount === 1 || frameCount % 100 === 0) {
+  if (frameCount === 1 || frameCount % interval === 0) {
     guessItem = new GuessItem(width / 2, height / 2, 10);
   }
 
@@ -17,7 +18,10 @@ function GuessItem(x, y, scl) {
   this.x = x;
   this.y = y;
   this.scale = scl;
+  this.scaleIncrement = 0.25;
   this.content = getContent();
+  this.alpha = 255;
+  this.alphaDecrement = 3;
 
   function getContent() {
     return parseInt(random(10), 10);
@@ -25,10 +29,13 @@ function GuessItem(x, y, scl) {
 
   this.render = function () {
     push();
+    fill(0, this.alpha);
     textAlign(CENTER, CENTER);
     translate(this.x, this.y);
     scale(this.scale);
     text(this.content, 0, 0);
+    this.scale = this.scale + this.scaleIncrement;
+    this.alpha = this.alpha - this.alphaDecrement;
     pop();
   };
 }
