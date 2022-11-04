@@ -27,11 +27,45 @@ function draw() {
     guessItem.render();
   }
 
+  if (solution === true || solution === false) {
+    solutionMessage(gameScore.total, solution);
+  }
+}
+
+function solutionMessage(seed, solution) {
+  let trueMessages = [
+    'Nice!',
+    'Good job!',
+    'Keep it up!',
+    'Impressive!',
+  ];
+
+  let falseMessages = [
+    'Miss!',
+    'Wrong!',
+    'Terrible!',
+    'BWAHAHA! You missed!',
+  ];
+
+  let messages;
+
+  push();
+  textAlign(CENTER, CENTER);
+  textSize(56);
+  fill(237, 34, 93);
+  randomSeed(seed * 10000);
+
   if (solution === true) {
     background(255);
+    messages = trueMessages;
   } else if (solution === false) {
     background(0);
+    messages = falseMessages;
   }
+
+  translate(width / 2, height / 2);
+  text(messages[parseInt(random(messages.length), 10)], 0, 0);
+  pop();
 }
 
 function displayGameOver(score) {
@@ -76,6 +110,7 @@ function restartGame() {
   results = [];
   solution = null;
   gameOver = false;
+  interval = 100;
 }
 
 function keyPressed() {
@@ -108,6 +143,18 @@ function GuessItem(x, y, scl) {
   this.content = getContent();
   this.alpha = 255;
   this.alphaDecrement = 3;
+  this.contentMap = {
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
+    0: 'zero',
+  };
 
   function getContent() {
     return String(parseInt(random(10), 10));
@@ -131,7 +178,7 @@ function GuessItem(x, y, scl) {
     textAlign(CENTER, CENTER);
     translate(this.x, this.y);
     scale(this.scale);
-    text(this.content, 0, 0);
+    text(this.contentMap[(this.content)], 0, 0);
     this.scale = this.scale + this.scaleIncrement;
     this.alpha = this.alpha - this.alphaDecrement;
     pop();
